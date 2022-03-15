@@ -1,0 +1,111 @@
+using System;
+
+namespace Laborator3POO
+{
+    public static class Text
+    {
+        public static int countSen(string text)
+        {
+            int sentence = 0;
+            int flag = 0;
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (text[i] == '.' || text[i] == '?' || text[i] == '!')
+                {
+                    sentence++;
+                    flag++;
+                }
+
+
+            }
+            return sentence;
+        }
+
+        public static int countW(string text)
+        {
+            int count;
+            if (text.Length > 0) { count = 1; }
+            else { count = 0; }
+
+            for (int i = 0; i <= text.Length - 1; i++)
+            {
+                if (text[i] == ' ' && text[i + 1] != ' ')
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        public static int countLet(string text)
+        {
+            int letter = 0;
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (char.IsLetter(text[i]))
+                    letter++;
+            }
+            return letter;
+        }
+
+        public static int countVo(string text)
+        {
+            int vowel = 0;
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (text[i] == 'A' || text[i] == 'a' || text[i] == 'E' || text[i] == 'e'
+                        || text[i] == 'I' || text[i] == 'i' || text[i] == 'O'
+                        || text[i] == 'o' || text[i] == 'U' || text[i] == 'u')
+                {
+                    vowel++;
+                }
+            }
+            return vowel;
+        }
+        public static int countCon(string text)
+        {
+            return (countLet(text) - countVo(text));
+        }
+        public static string getLongest(string text)
+        {
+            string[] words = text.Split(new[] { " " }, StringSplitOptions.None);
+            string word = "";
+            int ctr = 0;
+            foreach (string s in words)
+            {
+                if (s.Length > ctr)
+                {
+                    word = s;
+                    ctr = s.Length;
+                }
+            }
+            return word;
+        }
+
+        class Program
+        {
+            static void Main(string[] args)
+            {
+
+                Console.WriteLine("Nivel de bază");
+                Console.WriteLine("Introduceți un text :");
+
+                string Scanner = Console.ReadLine();
+
+                string text = Scanner;
+
+                Console.WriteLine("\t>Propoziții: " + Text.countSen(text));
+                Console.WriteLine("\t>Cuvinte:" + Text.countW(text));
+
+                Console.WriteLine("\nNivel avansat:");
+                Console.WriteLine("\t>Litere: " + Text.countLet(text));
+                Console.WriteLine("\t>Vocale: " + Text.countVo(text));
+                Console.WriteLine("\t>Consoane: " + Text.countCon(text));
+
+                Console.WriteLine("\nNivel avansat (2)");
+                Console.WriteLine("\t>Cel mai lung cuvânt este: " + Text.getLongest(text));
+
+            }
+        }
+    }
+}
