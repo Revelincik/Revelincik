@@ -1,0 +1,106 @@
+//Main
+package com.Laborator7;
+
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+
+        GeometricBody cube = new Cube(5);
+        GeometricBody sphere = new Sphere(5);
+        GeometricBody parallelepiped = new Parallelepiped(5, 15, 25);
+
+        ArrayList<GeometricBody> bodies = new ArrayList<GeometricBody>();
+
+        System.out.println("Basic Level:");
+
+        System.out.println("\nCube:");
+        System.out.println("Volum: " + cube.getVolume());
+        System.out.println("Suptafata: " + cube.getSurface());
+
+        System.out.println("\nSfera:");
+        System.out.println("Volum: " + sphere.getVolume());
+        System.out.println("Suprafata: " + sphere.getSurface());
+
+        System.out.println("\nParalelipiped:");
+        System.out.println("Volum: " + parallelepiped.getVolume());
+        System.out.println("Suprafata: " + parallelepiped.getSurface());
+
+
+        bodies.add(cube);
+        bodies.add(sphere);
+        bodies.add(parallelepiped);
+
+        System.out.println("\nAvansat Level:\n");
+        System.out.println("The biggest volume: " + GeometricBodyController.getBiggestSurfaceBody(bodies).getSurface());
+        System.out.println("The biggest surface: " + GeometricBodyController.getBiggestVolumeBody(bodies).getVolume());
+    }
+}
+//Cube
+package com.Laborator7;
+public class Cube implements GeometricBody
+{
+    private float length;
+    public Cube(float l){length = l;}
+    public float getSurface(){return 6 * (length * length);}
+    public float getVolume(){return length * length * length;}
+}
+//GeometricBody
+package com.Laborator7;
+public interface GeometricBody
+{
+    float getSurface();
+    float getVolume();
+}
+//GeometricBodyController
+package com.Laborator7;
+import java.util.ArrayList;
+public class GeometricBodyController
+{
+    static public GeometricBody getBiggestSurfaceBody(ArrayList<GeometricBody> bodies)
+    {
+        float max = 0;
+        GeometricBody maxBody = null;
+        for (GeometricBody i : bodies)
+        {
+            float surf = i.getSurface();
+            if (surf > max){max = surf;maxBody = i;}
+        }
+        return maxBody;
+    }
+
+    static public GeometricBody getBiggestVolumeBody(ArrayList<GeometricBody> bodies)
+    {
+        float max = 0;
+        GeometricBody maxBody = null;
+        for (GeometricBody i : bodies)
+        {
+            float surf = i.getVolume();
+            if (surf > max) {max = surf;maxBody = i;}
+        }
+        return maxBody;
+    }
+}
+//Parallelepiped
+package com.Laborator7;
+public class Parallelepiped implements GeometricBody
+{
+    private float a, b, c;
+    public Parallelepiped(float a, float b, float c)
+    {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
+    public float getVolume(){return a * b * c;}
+    public float getSurface(){return (2 * a * b) + (2 * b * c) + (2 * a * c);}
+}
+//Sphere
+package com.Laborator7;
+public class Sphere implements GeometricBody
+{
+    private float r;
+    public Sphere(float r){this.r = r;}
+    public float getSurface(){return (float)Math.PI * (r * r) * 4;}
+    public float getVolume(){return (float)Math.PI * (r * r * r) * (4/3);}
+}
