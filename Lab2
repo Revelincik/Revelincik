@@ -1,0 +1,155 @@
+//box
+
+package com.Laborator2;
+
+public class Box {
+
+    int height;
+    int width;
+    int depth;
+
+    public Box(){
+        height = 1;
+        width = 1;
+        depth = 1;
+    }
+
+    public Box(int value){
+        height = value;
+        width = value;
+        depth = value;
+    }
+
+    public Box(int height, int width, int depth){
+        this.height = height;
+        this.width = width;
+        this.depth = depth;
+    }
+
+    double getSurfaceArea(){
+        return (2*depth*width + 2*depth*height + 2*height*width);
+    }
+
+    double getVolume(){
+        return (height*width*depth);
+    }
+
+    public String showResult() {
+        return ("\nHeight: " + height+"\nWidth: " + width + "\nDepth: " + depth);
+    }
+
+}
+
+// queue
+
+package com.Laborator2;
+
+    public class Queue {
+        int capacity;
+        int[] queue;
+        int front;
+        int back;
+        int count;
+
+        public Queue(int size) {
+            capacity = size;
+            queue = new int[capacity];
+            front = 0;
+            back = -1;
+            count = 0;
+        }
+
+        public Queue() {
+            capacity = 50;
+            queue = new int[50];
+            front = 0;
+            back = 0;
+            count = 0;
+
+        }
+
+        public void push(int addElem) {
+            System.out.println("Introdu: " + addElem);
+            if (back == capacity - 1)
+                back = -1;
+            queue[++back] = addElem;
+            count++;
+        }
+
+
+        public int pop() {
+            int temp = queue[front++];
+            if (front == capacity)
+                front = 0;
+            count--;
+            return temp;
+        }
+
+        public void isEmpty() {
+
+            if (count == 0) {
+                System.out.println("Coada este goală.");
+            }
+        }
+
+        public void isFull() {
+
+            if (capacity == size()) {
+                System.out.println("Coada este plină");
+            } else {
+                System.out.println("Coada are elemente, dar nu este plină.");
+            }
+
+        }
+
+        public int size() {
+            return count;
+        }
+    }
+
+//main
+
+package com.Laborator2;
+
+public class Main {
+
+    public static void main(String[] args) {
+        System.out.println("Nivel de bază:");
+
+        Box b1 = new Box();
+        Box b2 = new Box(12);
+        Box b3 = new Box(18, 6, 14);
+
+        System.out.println("Dimensiunea cutiei este: "+ b3.showResult());
+        System.out.println("Suprafața cutiei este: " + b3.getSurfaceArea() + "cm2");
+        System.out.println("Volumul cutiei este: " + b3.getVolume() + "cm3");
+
+        System.out.println("\nNivelul avansat:");
+
+        Queue q1 = new Queue(3);
+        Queue q2 = new Queue();
+
+        System.out.println("\nPrima coadă:");
+        q1.push(17);
+        q1.push(280);
+        q1.push(35);
+
+        q1.pop();
+        q1.isEmpty();
+        q1.isFull();
+
+        System.out.println("Coada are " + q1.size() + " elemente.");
+
+        System.out.println("\nA doua coadă:");
+        q2.push(50);
+        q2.push(22);
+        q2.push(46);
+
+        q2.pop();
+        q2.isEmpty();
+        q2.isFull();
+
+        System.out.println("Coada are " + q2.size() + " elemente.");
+    }
+
+}
