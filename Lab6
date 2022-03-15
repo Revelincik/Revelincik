@@ -1,0 +1,139 @@
+//Main
+package com.Laborator6;
+
+public class Main {
+    static public void main(String[] args) {
+        Organization org = new Organization();
+
+        System.out.println(org);
+
+    }
+}
+//AdministrativeStaf
+package com.Laborator6;
+
+public abstract class AdministrativeStaff extends Staff{
+
+}
+//Departament
+package com.Laborator6;
+
+public class Departament {
+    public Staff[] staff;
+}
+//Doctor
+package com.Laborator6;
+
+public class Doctor extends OperationsStuff{
+    public String[] specialty;
+    public String[] locations;
+}
+//FrontDeskStuff
+package com.Laborator6;
+
+public class FrontDeskStuff extends AdministrativeStaff{
+
+}
+//Hospital
+package com.Laborator6;
+
+public class Hospital {
+    public String id;
+    public String[] address;
+    public String[] phone;
+    public Departament[] departaments;
+    public Person[] persons;
+}
+//Nurse
+package com.Laborator6;
+
+public class Nurse extends OperationsStuff{
+}
+//OperationsStuff
+package com.Laborator6;
+
+public abstract class OperationsStuff extends Staff{
+}
+//Organization
+package com.Laborator6;
+
+public class Organization {
+    public Person person;
+}
+//Pacient
+package com.Laborator6;
+import java.util.Date;
+
+public class Pacient extends Person{
+    public String id;
+    public Date accepted;
+    public String[] sickness;
+    public String[] prescriptions;
+    public String[] allergies;
+    public String[] specialReqs;
+
+    public int age(){
+        return accepted.compareTo(accepted) - birthDate.compareTo(accepted);
+    }
+}
+//Person
+package com.Laborator6;
+import java.util.Date;
+
+public class Person {
+    public String title;
+    public String givenName;
+    public String middleName;
+    public String familyName;
+    public Date birthDate;
+    public boolean gender;
+    public String phone;
+    public String homeAddress;
+
+    public String fullName(){
+        return title + givenName + middleName + familyName;
+    }
+    public Hospital[] hospitals;
+}
+//Recepteonist
+package com.Laborator6;
+
+public class Recepteonist extends FrontDeskStuff{
+}
+//Staff
+package com.Laborator6;
+import java.util.Date;
+
+public class Staff extends Person{
+    public Date joined;
+    public String[] education;
+    public String[] certifications;
+    public String[] languages;
+}
+//Surgeon
+package com.Laborator6;
+
+public class Surgeon extends Doctor{
+}
+//SurgicalTehnologist
+package com.Laborator6;
+
+public class SurgicalTehnologist extends Tehnologist{
+}
+//TehnicialStaff
+package com.Laborator6;
+
+public abstract class TehnicialStaff extends Staff{
+}
+//Tehniciast
+package com.Laborator6;
+
+public class Tehniciast extends TehnicialStaff{
+}
+//Tehnologist
+package com.Laborator6;
+
+public class Tehnologist extends TehnicialStaff{
+}
+
+
